@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       body: "",
-      board_code: "news",
+      board_code: "",
       list: "",
       no: "",
       paging: "",
@@ -89,9 +89,25 @@ export default {
     };
   },
   mounted() {
+    this.checkPath();
     this.getList();
   },
+  watch: {
+    $route() {
+      this.checkPath();
+      this.getList();
+    },
+  },
   methods: {
+    checkPath() {
+      if (this.$route.path.includes("news")) {
+        this.board_code = "news";
+      } else if (this.$route.path.includes("free")) {
+        this.board_code = "free";
+      } else {
+        this.board_code = "ano";
+      }
+    },
     getList() {
       this.body = {
         board_code: this.board_code,
@@ -125,7 +141,7 @@ export default {
       }
     },
     addBoard() {
-      this.$router.push("/board/write");
+      this.$router.push({ path: "/board/write" });
     },
     findView(id) {
       this.body.id = id;

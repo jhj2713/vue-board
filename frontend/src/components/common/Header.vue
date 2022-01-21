@@ -8,16 +8,13 @@
     <div>
       <ul class="menu">
         <li>
-          <router-link to="/board/list">게시판1</router-link>
+          <router-link to="/board/list/news">공지사항</router-link>
         </li>
         <li>
-          <router-link to="/board/list">게시판2</router-link>
+          <router-link to="/board/list/free">자유게시판</router-link>
         </li>
         <li>
-          <router-link to="/board/list">게시판3</router-link>
-        </li>
-        <li>
-          <router-link to="/board/list">게시판4</router-link>
+          <router-link to="/board/list/ano">익명게시판</router-link>
         </li>
       </ul>
     </div>

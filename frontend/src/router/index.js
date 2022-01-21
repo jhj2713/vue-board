@@ -11,7 +11,7 @@ const routes = [
     component: Main,
   },
   {
-    path: "/board/list",
+    path: "/board/list/:type",
     name: "List",
     component: List,
   },
