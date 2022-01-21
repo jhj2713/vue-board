@@ -58,10 +58,6 @@ header ul.menu li {
   list-style: none;
   cursor: pointer;
 }
-a {
-  text-decoration: none;
-  color: black;
-}
 a:hover {
   color: #42b983;
 }
