@@ -8,24 +8,16 @@
     <div>
       <ul class="menu">
         <li>
-          <router-link to="/board/list" active-class="active"
-            >게시판1</router-link
-          >
+          <router-link to="/board/list">게시판1</router-link>
         </li>
         <li>
-          <router-link to="/board/list" active-class="active"
-            >게시판2</router-link
-          >
+          <router-link to="/board/list">게시판2</router-link>
         </li>
         <li>
-          <router-link to="/board/list" active-class="active"
-            >게시판3</router-link
-          >
+          <router-link to="/board/list">게시판3</router-link>
         </li>
         <li>
-          <router-link to="/board/list" active-class="active"
-            >게시판4</router-link
-          >
+          <router-link to="/board/list">게시판4</router-link>
         </li>
       </ul>
     </div>
@@ -60,9 +52,5 @@ header ul.menu li {
 }
 a:hover {
   color: #42b983;
-}
-.active {
-  color: #42b983;
-  text-decoration: none;
 }
 </style>
