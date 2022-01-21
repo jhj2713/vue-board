@@ -33,7 +33,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      board_code: "news",
+      board_code: this.$route.query.board_code,
       title: "",
       content: "",
       user_id: "admin",
@@ -49,7 +49,10 @@ export default {
   },
   methods: {
     goList() {
-      this.$router.push({ path: "/board/list", query: this.body });
+      this.$router.push({
+        path: "/board/list/" + this.board_code,
+        query: this.body,
+      });
     },
     addList() {
       if (!this.title) {

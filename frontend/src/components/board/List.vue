@@ -1,6 +1,6 @@
 <template>
   <div class="list-container">
-    <h2>게시판 리스트</h2>
+    <h2>{{ board_title }}</h2>
     <div class="search-wrap">
       <input type="text" v-model="keyword" @keyup.enter="search" />
       <p class="btn-search" @click="search">검색</p>
@@ -17,7 +17,8 @@
         <tr>
           <th>no</th>
           <th>제목</th>
-          <th>아이디</th>
+          <th v-if="board_code != 'ano'">아이디</th>
+          <th v-else></th>
           <th>날짜</th>
         </tr>
         <tr v-for="(row, idx) in list" :key="idx">
@@ -25,7 +26,8 @@
           <td class="title">
             <a @click="findView(`${row.id}`)">{{ row.title }}</a>
           </td>
-          <td>{{ row.user_id }}</td>
+          <td v-if="board_code != 'ano'">{{ row.user_id }}</td>
+          <td v-else></td>
           <td>{{ row.regdate.substring(0, 10) }}</td>
         </tr>
         <tr v-if="list.length == 0">
@@ -71,6 +73,7 @@ export default {
     return {
       body: "",
       board_code: "",
+      board_title: "",
       list: "",
       no: "",
       paging: "",
@@ -102,10 +105,13 @@ export default {
     checkPath() {
       if (this.$route.path.includes("news")) {
         this.board_code = "news";
+        this.board_title = "공지사항";
       } else if (this.$route.path.includes("free")) {
         this.board_code = "free";
+        this.board_title = "자유게시판";
       } else {
         this.board_code = "ano";
+        this.board_title = "익명게시판";
       }
     },
     getList() {
@@ -141,7 +147,10 @@ export default {
       }
     },
     addBoard() {
-      this.$router.push({ path: "/board/write" });
+      this.$router.push({
+        path: "/board/write",
+        query: { board_code: this.board_code },
+      });
     },
     findView(id) {
       this.body.id = id;

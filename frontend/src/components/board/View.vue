@@ -57,7 +57,7 @@ export default {
         });
     },
     goList() {
-      this.$router.push("/board/list");
+      this.$router.push("/board/list/" + this.body.board_code);
     },
     deleteBoard() {
       if (confirm("삭제하시겠습니까?")) {
