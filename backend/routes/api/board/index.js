@@ -4,6 +4,7 @@ const dao = require("./dao");
 router.get("/", dao.list);
 router.get("/:id", dao.view);
 router.post("/", dao.add);
+router.delete("/", dao.delete);
 
 router.all("*", (req, res) => {
   res

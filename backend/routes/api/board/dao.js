@@ -72,3 +72,12 @@ exports.view = (req, res) => {
     res.send({ success: true, view: view });
   });
 };
+
+exports.delete = (req, res) => {
+  body = req.query;
+  sql = "DELETE FROM board WHERE id = ?";
+  conn.query(sql, [body.id], (err, result) => {
+    if (err) throw err;
+    res.send({ success: true, result: result });
+  });
+};

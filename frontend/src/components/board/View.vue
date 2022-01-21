@@ -19,6 +19,7 @@
     </div>
     <div class="go-list-wrap">
       <p @click="goList" class="btn-go-list">목록</p>
+      <p @click="deleteBoard" class="btn-delete">삭제</p>
     </div>
   </div>
 </template>
@@ -57,6 +58,23 @@ export default {
     goList() {
       this.$router.push("/board/list");
     },
+    deleteBoard() {
+      if (confirm("삭제하시겠습니까?")) {
+        axios
+          .delete("http://localhost:3000/api/board", { params: this.body })
+          .then((res) => {
+            if (res.data.result) {
+              alert("삭제되었습니다");
+              this.goList();
+            } else {
+              alert("삭제중 오류가 발생했습니다\n다시 시도해주세요");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
   },
 };
 </script>
@@ -87,5 +105,13 @@ export default {
   color: white;
   padding: 10px;
   cursor: pointer;
+}
+.btn-delete {
+  width: 35px;
+  background: red;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
 }
 </style>
