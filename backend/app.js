@@ -3,21 +3,15 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var mysql = require("mysql");
-var dbInfo = require("./config");
+var db = require("./config/db");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 var app = express();
 
-mysql.createConnection(dbInfo).connect((err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("mysql connect success");
-  }
-});
+var conn = db.init();
+db.conn(conn);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
