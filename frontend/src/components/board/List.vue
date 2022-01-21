@@ -23,7 +23,7 @@
         <tr v-for="(row, idx) in list" :key="idx">
           <td>{{ no - idx }}</td>
           <td class="title">
-            <a>{{ row.title }}</a>
+            <a @click="findView(`${row.id}`)">{{ row.title }}</a>
           </td>
           <td>{{ row.user_id }}</td>
           <td>{{ row.regdate.substring(0, 10) }}</td>
@@ -126,6 +126,10 @@ export default {
     },
     addBoard() {
       this.$router.push("/board/write");
+    },
+    findView(id) {
+      this.body.id = id;
+      this.$router.push({ path: "/board/view", query: this.body });
     },
   },
 };

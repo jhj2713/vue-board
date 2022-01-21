@@ -61,3 +61,14 @@ exports.add = (req, res) => {
     },
   );
 };
+
+exports.view = (req, res) => {
+  body = req.query;
+  id = req.params.id;
+  sql = "SELECT * FROM board WHERE board_code = ? AND id = ?";
+
+  conn.query(sql, [body.board_code, id], (err, view) => {
+    if (err) throw err;
+    res.send({ success: true, view: view });
+  });
+};
