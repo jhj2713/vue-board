@@ -3,6 +3,7 @@ const dao = require("./dao");
 
 router.post("/signup", dao.signup);
 router.get("/check", dao.check);
+router.post("/login", dao.login);
 
 router.all("*", (req, res) => {
   res

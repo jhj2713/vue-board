@@ -18,3 +18,16 @@ exports.check = (req, res) => {
     res.send({ success: true, user: data });
   });
 };
+
+exports.login = (req, res) => {
+  body = req.body;
+  sql = "SELECT * FROM user WHERE user_id = ? AND password = ?";
+  conn.query(sql, [body.user_id, body.password], (err, data) => {
+    if (err) throw err;
+    login = false;
+    if (data.length > 0) {
+      login = true;
+    }
+    res.send({ success: true, login: login });
+  });
+};

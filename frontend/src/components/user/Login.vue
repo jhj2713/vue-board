@@ -19,9 +19,8 @@
         </table>
       </form>
     </div>
-    <div>
-      <p v-if="error_message" class="error_message">{{ error_message }}</p>
-    </div>
+    <p v-if="error_message" class="error_message">{{ error_message }}</p>
+
     <div class="btn-wrap">
       <p @click="goSignup" class="btn-go-signup">회원가입하기</p>
       <p @click="goLogin" class="btn-login">로그인</p>
@@ -30,6 +29,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -47,7 +48,27 @@ export default {
         this.error_message = "비밀번호를 입력해주세요";
       } else {
         this.error_message = "";
-        this.$router.push("/");
+
+        this.form = {
+          user_id: this.user_id,
+          password: this.password,
+        };
+        axios
+          .post("http://localhost:3000/api/user/login", this.form)
+          .then((res) => {
+            if (res.data.success) {
+              if (res.data.login) {
+                this.$router.push("/");
+              } else {
+                this.error_message = "일치하는 회원 정보가 없습니다";
+              }
+            } else {
+              alert("진행중 오류가 발생했습니다\n다시 시도해주세요");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
     goSignup() {
@@ -60,9 +81,6 @@ export default {
 <style>
 .login-container {
   padding: 20px 25%;
-}
-.login-form {
-  margin-top: 30px;
 }
 .login-table th,
 .login-table td {
