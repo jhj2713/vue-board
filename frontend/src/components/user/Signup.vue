@@ -111,12 +111,12 @@ export default {
         })
         .then((res) => {
           if (res.data.success) {
-            if (res.data.user.length > 0) {
-              alert("사용할 수 없는 아이디입니다\n다른 아이디를 입력해주세요");
-              this.checked = false;
-            } else {
+            if (res.data.doublechecked) {
               alert("사용할 수 있는 아이디입니다");
               this.checked = true;
+            } else {
+              alert("사용할 수 없는 아이디입니다\n다른 아이디를 입력해주세요");
+              this.checked = false;
             }
           } else {
             alert("진행중 오류가 발생했습니다\n다시 시도해주세요");

@@ -15,7 +15,11 @@ exports.check = (req, res) => {
   sql = "SELECT * FROM user WHERE user_id = ?";
   conn.query(sql, [user_id], (err, data) => {
     if (err) throw err;
-    res.send({ success: true, user: data });
+    doublechecked = true;
+    if (data.length > 0) {
+      doublechecked = false;
+    }
+    res.send({ success: true, doublechecked: doublechecked });
   });
 };
 
