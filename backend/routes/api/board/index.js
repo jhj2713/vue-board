@@ -1,8 +1,7 @@
 const router = require("express").Router();
+const dao = require("./dao");
 
-router.get("/", (req, res) => {
-  res.send("good");
-});
+router.get("/", dao.list);
 
 router.all("*", (req, res) => {
   res
