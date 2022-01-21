@@ -1,11 +1,13 @@
 <template>
   <header>
     <h1>
-      <img alt="Vue logo" src="../../assets/logo.png" width="100" />
+      <router-link to="/">
+        <img alt="Vue logo" src="../../assets/logo.png" width="100" />
+      </router-link>
     </h1>
     <div>
       <ul class="menu">
-        <li>메뉴1</li>
+        <li><router-link to="/board/list">메뉴1 </router-link></li>
         <li>메뉴2</li>
         <li>메뉴3</li>
         <li>메뉴4</li>

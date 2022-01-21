@@ -1,11 +1,10 @@
 <template>
   <Header />
-  <Boards msg="Welcome to Your Vue.js App" />
+  <router-view />
   <Footer />
 </template>
 
 <script>
-import Boards from "./components/Boards.vue";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 
@@ -13,7 +12,6 @@ export default {
   name: "App",
   components: {
     Header,
-    Boards,
     Footer,
   },
 };

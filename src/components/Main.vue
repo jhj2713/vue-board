@@ -88,7 +88,7 @@
 
 <script>
 export default {
-  name: "Boards",
+  name: "Main",
   props: {
     msg: String,
   },
