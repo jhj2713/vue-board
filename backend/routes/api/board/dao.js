@@ -81,3 +81,13 @@ exports.delete = (req, res) => {
     res.send({ success: true, result: result });
   });
 };
+
+exports.modify = (req, res) => {
+  body = req.body;
+  sql =
+    "UPDATE board SET title = ?, content = ?, editdate = now() WHERE id = ?";
+  conn.query(sql, [body.title, body.content, body.id], (err, result) => {
+    if (err) throw err;
+    res.send({ success: true });
+  });
+};

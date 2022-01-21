@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>게시판 등록</h1>
+    <h1>게시판 {{ id ? "수정" : "등록" }}</h1>
     <div>
       <form>
         <table class="add-table">
@@ -21,7 +21,8 @@
     </div>
     <div class="btn-wrap">
       <p @click="goList" class="btn-list">목록</p>
-      <p @click="addList" class="btn-add">등록</p>
+      <p v-if="!id" @click="addList" class="btn-add">등록</p>
+      <p v-else @click="modifyBoard" class="btn-add">수정</p>
     </div>
   </div>
 </template>
@@ -37,7 +38,14 @@ export default {
       content: "",
       user_id: "admin",
       form: "",
+      body: this.$route.query,
+      id: this.$route.query.id,
     };
+  },
+  mounted() {
+    if (this.id) {
+      this.getView();
+    }
   },
   methods: {
     goList() {
@@ -63,6 +71,50 @@ export default {
             this.goList();
           } else {
             alert("등록에 실패했습니다\n다시 이용해주세요");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getView() {
+      axios
+        .get("http://localhost:3000/api/board/" + this.body.id, {
+          params: this.body,
+        })
+        .then((res) => {
+          this.view = res.data.view[0];
+          this.title = this.view.title;
+          this.content = this.view.content;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    goView() {
+      this.$router.push({ path: "/board/view", query: this.body });
+    },
+    modifyBoard() {
+      if (!this.title) {
+        alert("제목을 입력해주세요");
+        this.$refs.title.focus();
+        return;
+      }
+      this.form = {
+        board_code: this.board_code,
+        title: this.title,
+        content: this.content,
+        user_id: this.user_id,
+        id: this.id,
+      };
+      axios
+        .put("http://localhost:3000/api/board", this.form)
+        .then((res) => {
+          if (res.data.success) {
+            alert("수정되었습니다");
+            this.goView();
+          } else {
+            alert("실행중 오류가 발생했습니다\n다시 시도해주세요");
           }
         })
         .catch((err) => {

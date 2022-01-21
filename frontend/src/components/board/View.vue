@@ -19,6 +19,7 @@
     </div>
     <div class="go-list-wrap">
       <p @click="goList" class="btn-go-list">목록</p>
+      <p @click="modifyBoard" class="btn-modify">수정</p>
       <p @click="deleteBoard" class="btn-delete">삭제</p>
     </div>
   </div>
@@ -75,6 +76,9 @@ export default {
           });
       }
     },
+    modifyBoard() {
+      this.$router.push({ path: "/board/write", query: this.body });
+    },
   },
 };
 </script>
@@ -105,6 +109,14 @@ export default {
   color: white;
   padding: 10px;
   cursor: pointer;
+}
+.btn-modify {
+  width: 35px;
+  background: #43b984;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
 }
 .btn-delete {
   width: 35px;
