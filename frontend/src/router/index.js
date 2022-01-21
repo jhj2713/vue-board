@@ -5,12 +5,20 @@ import Write from "../components/Write.vue";
 import View from "../components/board/View.vue";
 import Signup from "../components/user/Signup.vue";
 import Login from "../components/user/Login.vue";
+import store from "../store";
 
 const routes = [
   {
     path: "/",
     name: "Main",
     component: Main,
+    beforeEnter: (to, from, next) => {
+      if (store.state.user.id) {
+        next();
+      } else {
+        next("/login");
+      }
+    },
   },
   {
     path: "/board/list/:type",
@@ -21,6 +29,13 @@ const routes = [
     path: "/board/write",
     name: "Write",
     component: Write,
+    beforeEnter: (to, from, next) => {
+      if (store.state.user.id) {
+        next();
+      } else {
+        next("/login");
+      }
+    },
   },
   {
     path: "/board/view",
@@ -31,8 +46,26 @@ const routes = [
     path: "/signup",
     name: "Signup",
     component: Signup,
+    beforeEnter: (to, from, next) => {
+      if (store.state.user.id) {
+        next("/");
+      } else {
+        next();
+      }
+    },
   },
-  { path: "/login", name: "Login", component: Login },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    beforeEnter: (to, from, next) => {
+      if (store.state.user.id) {
+        next("/");
+      } else {
+        next();
+      }
+    },
+  },
 ];
 
 const router = createRouter({
