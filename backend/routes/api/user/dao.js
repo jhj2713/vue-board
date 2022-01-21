@@ -28,10 +28,10 @@ exports.login = (req, res) => {
   sql = "SELECT * FROM user WHERE user_id = ? AND password = ?";
   conn.query(sql, [body.user_id, body.password], (err, data) => {
     if (err) throw err;
-    login = false;
+    user = undefined;
     if (data.length > 0) {
-      login = true;
+      user = data[0];
     }
-    res.send({ success: true, login: login });
+    res.send({ success: true, user: user });
   });
 };

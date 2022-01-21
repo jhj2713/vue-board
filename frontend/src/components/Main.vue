@@ -11,18 +11,13 @@
           <tr>
             <th>아이디</th>
             <td>
-              <input type="text" v-model="user_id" ref="user_id" disabled />
+              <input type="text" v-model="user_id" disabled />
             </td>
           </tr>
           <tr>
             <th>닉네임</th>
             <td>
-              <input
-                type="password"
-                v-model="password"
-                ref="password"
-                disabled
-              />
+              <input type="text" v-model="nickname" disabled />
             </td>
           </tr>
         </table>
@@ -35,8 +30,8 @@
 export default {
   data() {
     return {
-      user_id: "유저명",
-      nickname: "닉네임",
+      user_id: this.$store.state.user.user_id,
+      nickname: this.$store.state.user.nickname,
       error_message: "",
     };
   },

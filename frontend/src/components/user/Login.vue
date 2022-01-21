@@ -57,7 +57,8 @@ export default {
           .post("http://localhost:3000/api/user/login", this.form)
           .then((res) => {
             if (res.data.success) {
-              if (res.data.login) {
+              if (res.data.user) {
+                this.$store.commit("login", res.data.user);
                 this.$router.push("/");
               } else {
                 this.error_message = "일치하는 회원 정보가 없습니다";
