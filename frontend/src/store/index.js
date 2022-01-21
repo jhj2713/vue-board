@@ -9,6 +9,9 @@ export default createStore({
     login(state, user) {
       state.user = user;
     },
+    logout(state) {
+      state.user = {};
+    },
   },
   actions: {},
   modules: {},

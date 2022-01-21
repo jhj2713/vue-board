@@ -1,9 +1,9 @@
 <template>
-  <div class="login-container">
+  <div class="user-container">
     <h2>회원정보</h2>
-    <div class="login-form">
+    <div class="user-form">
       <form>
-        <table class="login-table">
+        <table class="user-table">
           <colgroup>
             <col width="40%" />
             <col width="*" />
@@ -23,6 +23,9 @@
         </table>
       </form>
     </div>
+    <div class="btn-wrap">
+      <p @click="logout" class="btn-logout">로그아웃</p>
+    </div>
   </div>
 </template>
 
@@ -36,41 +39,39 @@ export default {
     };
   },
   mounted() {},
+  methods: {
+    logout() {
+      this.$store.commit("logout");
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 
 <style>
-.login-container {
+.user-container {
   padding: 20px 25%;
 }
-.login-form {
+.user-form {
   margin: 50px 20px;
 }
-.login-table th,
-.login-table td {
+.user-table th,
+.user-table td {
   border-bottom: 1px solid #eee;
 }
-.login-table td {
+.user-table td {
   padding: 10px;
 }
-.login-table td input {
+.user-table td input {
   width: 80%;
   min-height: 30px;
   padding: 0 10px;
 }
-.btn-login {
-  background: #35495e;
-  color: white;
-  padding: 10px;
-}
-.btn-go-signup {
+.btn-logout {
   color: #43b984;
-  padding: 10px;
+  cursor: pointer;
 }
-.error_message {
-  color: red;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 20px;
+.btn-logout:hover {
+  color: #35495e;
 }
 </style>
