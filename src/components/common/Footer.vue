@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <p>Footer</p>
+    <p>copyRight juhyojeong</p>
   </footer>
 </template>
 
@@ -8,4 +8,9 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+footer {
+  border-top: 1px solid grey;
+  color: #42b983;
+}
+</style>

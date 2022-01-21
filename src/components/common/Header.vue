@@ -1,7 +1,16 @@
 <template>
   <header>
-    <img alt="Vue logo" src="../../assets/logo.png" width="100" />
-    <h1>헤더영역</h1>
+    <h1>
+      <img alt="Vue logo" src="../../assets/logo.png" width="100" />
+    </h1>
+    <div>
+      <ul class="menu">
+        <li>메뉴1</li>
+        <li>메뉴2</li>
+        <li>메뉴3</li>
+        <li>메뉴4</li>
+      </ul>
+    </div>
   </header>
 </template>
 
@@ -9,4 +18,25 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+header {
+  width: 100%;
+  border-bottom: 1px solid grey;
+  height: 80px;
+}
+header h1 {
+  position: absolute;
+  top: 0;
+  left: 40px;
+}
+header ul.menu {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+header ul.menu li {
+  float: left;
+  padding: 10px 20px;
+  list-style: none;
+}
+</style>
