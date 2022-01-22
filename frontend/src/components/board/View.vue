@@ -19,8 +19,20 @@
     </div>
     <div class="go-list-wrap">
       <p @click="goList" class="btn-go-list">목록</p>
-      <p @click="modifyBoard" class="btn-modify">수정</p>
-      <p @click="deleteBoard" class="btn-delete">삭제</p>
+      <p
+        v-if="user_id == this.$store.state.user.user_id"
+        @click="modifyBoard"
+        class="btn-modify"
+      >
+        수정
+      </p>
+      <p
+        v-if="user_id == this.$store.state.user.user_id"
+        @click="deleteBoard"
+        class="btn-delete"
+      >
+        삭제
+      </p>
     </div>
   </div>
 </template>
@@ -36,6 +48,7 @@ export default {
       content: "",
       view: "",
       id: this.$route.query.id,
+      user_id: "",
     };
   },
   mounted() {
@@ -51,6 +64,7 @@ export default {
           this.view = res.data.view[0];
           this.title = this.view.title;
           this.content = this.view.content.replace(/(\n)/g, "<br/>");
+          this.user_id = this.view.user_id;
         })
         .catch((err) => {
           console.log(err);

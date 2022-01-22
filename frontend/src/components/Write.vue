@@ -36,7 +36,7 @@ export default {
       board_code: this.$route.query.board_code,
       title: "",
       content: "",
-      user_id: "admin",
+      user_id: this.$store.state.user.user_id,
       form: "",
       body: this.$route.query,
       id: this.$route.query.id,

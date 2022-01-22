@@ -62,7 +62,9 @@
       <a @click="findPage(`${paging.total_page}`)" class="last">&gt;&gt;</a>
     </div>
 
-    <p @click="addBoard" class="btn-go-write">등록</p>
+    <p v-if="board_code != 'news'" @click="addBoard" class="btn-go-write">
+      등록
+    </p>
   </div>
 </template>
 
